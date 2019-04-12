@@ -1,8 +1,10 @@
 import yaml
+from pprint import pprint
 
 
 def mock():
-    with open("mock.db") as file:
+    db = None
+    with open("mock.yml") as file:
         try:
             db = yaml.load(file)
         except yaml.YAMLError as e:
