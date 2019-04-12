@@ -1,0 +1,21 @@
+front/allepaczka/front/.DS_Store
+front/allepaczka/node_modules
+front/allepaczka/dist
+
+front/allepaczka/# local env files
+front/allepaczka/.env.local
+front/allepaczka/.env.*.local
+
+# Log files
+front/allepaczka/npm-debug.log*
+front/allepaczka/yarn-debug.log*
+front/allepaczka/yarn-error.log*
+
+# Editor directories and files
+front/allepaczka/.idea
+front/allepaczka/.vscode
+front/allepaczka/*.suo
+front/allepaczka/*.ntvs*
+front/allepaczka/*.njsproj
+front/allepaczka/*.sln
+front/allepaczka/*.sw*
