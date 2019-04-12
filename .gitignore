@@ -2,7 +2,7 @@ front/allepaczka/front/.DS_Store
 front/allepaczka/node_modules
 front/allepaczka/dist
 
-front/allepaczka/# local env files
+# local env files
 front/allepaczka/.env.local
 front/allepaczka/.env.*.local
 
@@ -19,3 +19,5 @@ front/allepaczka/*.ntvs*
 front/allepaczka/*.njsproj
 front/allepaczka/*.sln
 front/allepaczka/*.sw*
+
+magic/.idea
