@@ -20,4 +20,17 @@ front/allepaczka/*.njsproj
 front/allepaczka/*.sln
 front/allepaczka/*.sw*
 
+# Temporary files
+.#~
+*.*~
+~.#~
+/.#~
+.vscode*
+
+#venv
+Pipfile
+Pipfile.lock
+
+
+
 magic/.idea
