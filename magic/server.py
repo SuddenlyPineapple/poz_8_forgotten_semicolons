@@ -4,7 +4,7 @@ from pprint import pprint
 from flask import Flask, jsonify, request, abort, make_response
 
 app = Flask(__name__)
-DB = 'mock.yml'
+DB = 'magic/mock.yml'
 db = {}
 
 
