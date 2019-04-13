@@ -1,3 +1,0 @@
-# allepaczka
-
-# Tutorial jak odpalić apke...
