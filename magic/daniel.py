@@ -4,9 +4,6 @@ import polyline
 import sys
 import numpy as np
 
-start = (52.406376, 16.925167)
-end = (52.229675, 21.012230)
-
 EPSILON = sys.float_info.epsilon
 gmaps = googlemaps.Client(key='AIzaSyCkF7rIDbq8WFxWv8i09_dpeTkf1ueXwRA')
 
@@ -45,19 +42,16 @@ def gen_whole_arr(steps):
 def new_route(points):
     """
     :param points: List of tuples [(x1,y1), (x2,y2), (x3,y3)] First is starting point, last destination
-    :return:
+    :return: List of points, Nth index for Nth request
     """
     start, end = points.pop(0), points.pop()
-    response = gmaps.directions(start, end, mode='driving', alternatives='false')
-    gen_whole_arr(response[0]['legs'][0]['steps'])
+    response = gmaps.directions(start, end, waypoints=points,mode='driving', alternatives='false')
+    return  gen_whole_arr(response[0]['legs'][0]['steps'])
 
 
 """
 'overview polyline'
 """
-
-
-find_path([start,end])
 
 
 
