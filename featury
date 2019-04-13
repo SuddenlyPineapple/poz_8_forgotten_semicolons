@@ -1,0 +1,7 @@
+Kurier ma spisane paczki, na dany dzień. 
+
+1. Kurier przyjeżdzą po paczkę. Rozpoznaje paczkę po pdf-ie który jest naklejony na paczkę.
+2. Skanuje kod kreskowy na pdfie
+3. Paczka zapala się na zielono w jego menu
+4. User zaczyna mieć możliwość śledzenia go
+5. Kiedy paczka dojeżdża, kierowca skanuje to po raz drugi i paczka jest usuwana 
