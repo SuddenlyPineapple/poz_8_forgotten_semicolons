@@ -1,6 +1,6 @@
 packs:
   p0:
-    curr_route: 1
+    curr_route: 0
     curr_state: true
     date_sent: 2019-04-13 09:44:40.213896
     product:
@@ -32,7 +32,7 @@ packs:
       date: 2019-04-13 09:44:40.213882
     user_id: 0
   p1:
-    curr_route: 1
+    curr_route: 0
     curr_state: true
     date_sent: 2019-04-13 09:44:42.469553
     product: &id001
@@ -78,7 +78,7 @@ packs:
       date: 2019-04-13 09:44:42.469498
     user_id: 0
   p2:
-    curr_route: 1
+    curr_route: 0
     curr_state: true
     date_sent: 2019-04-13 09:44:43.293965
     product: *id001
@@ -101,7 +101,8 @@ packs:
 users:
   u0:
     name: "Witold Pi\u0105tkiewicz"
-    pack:
-    - 0
-    - 1
-    - 2
+    pack: [p0, p1, p2]
+
+  u1:
+    name: "Max Adamski"
+    pack: []
