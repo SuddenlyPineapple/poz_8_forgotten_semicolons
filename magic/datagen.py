@@ -80,7 +80,7 @@ class Generate:
     def gen_packs(self, user_id, number):
         for i in range(number):
             self.packs[f'p{self.pack_id}'] = {
-                'user_id': user_id,
+                'user_id': f'u{user_id}',
                 'product': self.product[i],
                 'route': self.gen_route(),
                 'date_sent': datetime.now(),
