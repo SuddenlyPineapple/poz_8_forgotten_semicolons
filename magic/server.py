@@ -4,7 +4,6 @@ from pprint import pprint
 from flask import Flask, jsonify, request, abort, make_response
 
 app = Flask(__name__)
-DB = 'magic/mock.yml'
 db = {}
 
 
@@ -12,18 +11,16 @@ def log(*args):
     print(file=stderr, *args)
 
 
-def load_db():
-    global db
-    with open(DB, 'r') as file:
+def load_db(path):
+    with open(path, 'r') as file:
         try:
-            db = yaml.load(file)
+            return yaml.safe_load(file)
         except yaml.YAMLError as e:
             print('database exception', e)
 
 
-def save_db():
-    global db
-    with open(DB, 'w') as file:
+def save_db(db, path):
+    with open(path, 'w') as file:
         yaml.dump(db, file)
 
 
@@ -43,6 +40,18 @@ def paczki():
         'paczki': user['pack'],
     }
     return jsonify(res)
+
+
+@app.route('/', methods=['GET'])
+def index():
+    index = """
+    allepaczka serwer
+
+    /paczka_info?id=_
+    /paczka_stan?id=_
+    /paczki?user=_
+    """
+    return make_response('<br>'.join(index.split('\n')), 200)
 
 
 @app.route('/paczka_stan', methods=['GET'])
@@ -94,15 +103,15 @@ def bad_request(error):
 
 if __name__ == '__main__':
     program = argv[0]
-    if len(argv) < 3:
-        log(f'usage: {program} 0.0.0.0 6060')
+    if len(argv) < 4:
+        log(f'usage: {program} magic/mock.yml 0.0.0.0 6060')
         exit(1)
 
-    _, host, port = argv
+    _, db_path, host, port = argv
     try:
-        load_db()
+        db = load_db(db_path)
         app.jinja_env.auto_reload = True
         app.config['TEMPLATES_AUTO_RELOAD'] = True
-        app.run(debug=True, host=host, port=int(port))
+        app.run(debug=False, host=host, port=int(port))
     except:
-        save_db()
+        save_db(db, db_path)
