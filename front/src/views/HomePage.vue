@@ -2,8 +2,9 @@
     <div>
         <v-container>
             <v-layout row>
-                 <v-flex lg4 offset-lg4 md6 xs12>
-                     <h1 class="mb-3 green--text text-xs-center">Text</h1>
+                 <v-flex xs12>
+                     <h1 class="mb-3 gray--text">Twoje Dane</h1>
+                    <PackagesTable></PackagesTable>
                 </v-flex>
             </v-layout>
         </v-container>
@@ -12,7 +13,13 @@
 
 <script>
 import {Vue, Component, Prop} from 'vue-property-decorator';
-@Component()
+import PackagesTable from '../components/PackagesTable.vue';
+
+@Component({
+    components: {
+        PackagesTable,
+    }
+})
 export default class HomePage extends Vue {
 
 }

@@ -1,10 +1,5 @@
 <template>
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-      dark
-      temporary
-    > 
+    <v-navigation-drawer v-model="drawer" app dark temporary >
       <v-flex xs12 class="text-xs-center my-4">
           <v-avatar :size="100" color="grey lighten-4 my-4">
             <img src="https://avatars2.githubusercontent.com/u/19464921?s=460&v=4" alt="avatar">
@@ -29,9 +24,10 @@
     </v-navigation-drawer>
 </template>
 
-<script>
+<script lang="js">
+  import {Vue, Component, Prop} from 'vue-property-decorator';
   import { mapGetters, mapMutations } from 'vuex';
-  
+
   export default {
     name: 'Drawer',
     computed: {
