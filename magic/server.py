@@ -6,8 +6,10 @@ from pprint import pprint
 from daniel import new_route
 from flask import Flask, jsonify, request, abort, make_response
 import time, threading
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 db = {}
 
 def update_times():
