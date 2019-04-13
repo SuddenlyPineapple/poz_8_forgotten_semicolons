@@ -3,11 +3,13 @@ import Router from 'vue-router';
 import HomePage from '../views/HomePage.vue';
 import MyPacks from '../views/MyPacks.vue';
 import About from '../views/About.vue';
+import PackDetails from '../views/PackDetails.vue';
 
 Vue.use(Router);
 
 export default new Router({
   mode: 'history',
+  base: process.env.BASE_URL,
   routes: [
       {
         path: '/',
@@ -23,6 +25,12 @@ export default new Router({
         path: '/about',
         component: About,
         name: 'O nas'
+      },
+      {
+        path: '/paczka/:pid',
+        component: PackDetails,
+        props: true,
+        name: 'Paczka'
       }
   ]
 });

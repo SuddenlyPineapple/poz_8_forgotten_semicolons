@@ -22,9 +22,10 @@ import Drawer from './components/Drawer.vue';
 
 export default class App extends Vue {
   public items = [
-    { title: 'Home', icon: 'dashboard', path: '/'},
-    { title: 'Moje Paczki', icon: 'question_answer', path: '/moje_paczki'},
-    { title: 'O nas', icon: 'question_answer', path: '/about'}
+    { title: 'Home', path: '/'},
+    { title: 'Moje Paczki', path: '/moje_paczki'},
+    { title: 'Paczka', path: '/paczka/:pid'},
+    { title: 'O nas', path: '/about'}
   ];
 }
 
