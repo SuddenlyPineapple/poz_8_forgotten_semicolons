@@ -81,8 +81,7 @@ class Generate:
         return route
 
 
-    def gen_packs(self, user_id):
-        number = random.randint(1, 6)
+    def gen_packs(self, user_id, number):
         for i in range(number):
             self.packs[self.pack_id] = {
                 'user_id': user_id,
@@ -96,11 +95,12 @@ class Generate:
 
     def gen_users(self, number):
         for i in range(number):
+            number_of_packs = random.randint(1, 6)
             self.users[i] = {
                 'name': fake.name(),
-                'pack': i
+                'pack': [self.pack_id + i for i in range(number_of_packs)]
             }
-            self.gen_packs(i)
+            self.gen_packs(i, number_of_packs)
 
 
 def main():

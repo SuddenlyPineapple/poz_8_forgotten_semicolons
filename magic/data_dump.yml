@@ -2,191 +2,127 @@ packs:
   0:
     curr_route: 1
     curr_state: true
-    date_sent: 2019-04-13 09:15:07.194290
-    product: &id001
-      id: 2
-      img: https://d.allegroimg.com/original/03b22e/7e0fdf8d4abaafb957abd050e1cd/MacBook-Pro-15-Core-i7-2-5GHz-16-512-GT750-2014
-      name: MacBook Pro 15 Core i7
-      url: https://allegro.pl/oferta/macbook-pro-15-core-i7-2-5ghz-16-512-gt750-2014-7795075067?reco_id=541adc33-5db9-11e9-8dea-246e96320fe8&sid=214dee23af5dacba6db9ec985d2421ccbc3b0218e9654c1f9eeca650c7d606e7
-    route:
-    - addr: ul. Strumykowa 552
-      city: "Chorz\xF3w"
-      code: 04-867
-      cord: !!python/tuple
-      - 52.3296423
-      - 20.9455151
-      date: 2019-04-13 09:15:05.528966
-    - addr: pl. Wypoczynkowa 04/23
-      city: Warszawa
-      code: 58-129
-      cord: !!python/tuple
-      - 52.2296756
-      - 21.0122287
-      date: 2019-04-13 09:15:05.932125
-    - addr: ulica Szewska 171
-      city: "Ostr\xF3w"
-      code: 27-077
-      cord: !!python/tuple
-      - 50.06251719999999
-      - 19.9350013
-      date: 2019-04-13 09:15:06.444011
-    - addr: "al. G\u0142ogowa 91"
-      city: "Wodzis\u0142aw"
-      code: 43-240
-      cord: !!python/tuple
-      - 50.003137
-      - 18.4719102
-      date: 2019-04-13 09:15:06.853179
-    - addr: pl. Widok 664
-      city: "Cz\u0119stochowa"
-      code: 25-206
-      cord: !!python/tuple
-      - 50.8118195
-      - 19.1203094
-      date: 2019-04-13 09:15:07.194279
-    user_id: 0
-  1:
-    curr_route: 1
-    curr_state: true
-    date_sent: 2019-04-13 09:15:09.412957
-    product: *id001
-    route:
-    - addr: pl. Staffa 513
-      city: Bochnia
-      code: 25-815
-      cord: !!python/tuple
-      - 56.4355675
-      - -6.341755999999999
-      date: 2019-04-13 09:15:07.676011
-    - addr: plac Narcyzowa 78
-      city: Zawiercie
-      code: 82-413
-      cord: !!python/tuple
-      - 50.50765020000001
-      - 19.4161022
-      date: 2019-04-13 09:15:08.081931
-    - addr: "ul. Cz\u0119stochowska 86/54"
-      city: "August\xF3w"
-      code: 03-637
-      cord: !!python/tuple
-      - 53.84344309999999
-      - 22.9796024
-      date: 2019-04-13 09:15:08.405331
-    - addr: plac Czarnieckiego 19
-      city: Legnica
-      code: 63-854
-      cord: !!python/tuple
-      - 51.2116157
-      - 16.1755728
-      date: 2019-04-13 09:15:08.902579
-    - addr: "al. Boles\u0142awa Krzywoustego 30"
-      city: Sochaczew
-      code: 79-727
-      cord: !!python/tuple
-      - 52.2596386
-      - 20.2842275
-      date: 2019-04-13 09:15:09.412910
-    user_id: 0
-  2:
-    curr_route: 1
-    curr_state: true
-    date_sent: 2019-04-13 09:15:11.262468
-    product: &id002
+    date_sent: 2019-04-13 09:27:45.334650
+    product:
       id: 1
       img: https://6.allegroimg.com/original/0080d6/8c255ba24701b88b1c051fc8eb26/Zestaw-Gillette-X-mass-81675185/Zestaw-z-maszynka-do-golenia-Gillette-Mach3-zel
       name: "Zestaw z maszynk\u0105 do golenia Gillette Mach3"
       url: https://allegro.pl/oferta/zestaw-z-maszynka-do-golenia-gillette-mach3-zel-7968767514?bi_s=strk_specjalna_sg_pion&bi_c=Licytacje&
     route:
-    - addr: ulica Konarskiego 51/22
-      city: Ruda
-      code: 53-750
+    - addr: al. Narutowicza 975
+      city: "Inowroc\u0142aw"
+      code: 07-952
       cord: !!python/tuple
-      - 50.2558286
-      - 18.8555704
-      date: 2019-04-13 09:15:09.925948
-    - addr: "plac \u015Arednia 569"
-      city: Sanok
-      code: 39-375
+      - 52.79765279999999
+      - 18.244675
+      date: 2019-04-13 09:27:43.486943
+    - addr: pl. Azaliowa 541
+      city: "Mi\u0144sk"
+      code: 16-736
       cord: !!python/tuple
-      - 49.8302484
-      - 22.5711588
-      date: 2019-04-13 09:15:10.448386
-    - addr: ul. Skrajna 98/79
+      - 52.1792836
+      - 21.5721057
+      date: 2019-04-13 09:27:43.998780
+    - addr: al. Kruczkowskiego 682
+      city: Jarocin
+      code: 45-067
+      cord: !!python/tuple
+      - 51.9724492
+      - 17.5019414
+      date: 2019-04-13 09:27:44.408583
+    - addr: "ul. D\u0105browskiego 96"
+      city: Wejherowo
+      code: 15-106
+      cord: !!python/tuple
+      - 54.5648633
+      - 18.4077317
+      date: 2019-04-13 09:27:44.920548
+    - addr: plac Daleka 55
+      city: Nowa
+      code: 31-980
+      cord: !!python/tuple
+      - 51.80344
+      - 15.71707
+      date: 2019-04-13 09:27:45.334599
+    user_id: 0
+  1:
+    curr_route: 1
+    curr_state: true
+    date_sent: 2019-04-13 09:27:47.172624
+    product: &id001
+      id: 0
+      img: https://3.allegroimg.com/original/014e4e/22bdd5c545d795a31cb134438823/LEGO-CITY-60206-Policyjny-patrol
+      name: LEGO CITY 60206 Policyjny patrol
+      url: https://allegro.pl/oferta/lego-city-60206-policyjny-patrol-7764308125
+    route:
+    - addr: plac Stycznia 037
+      city: "Goleni\xF3w"
+      code: 84-200
+      cord: !!python/tuple
+      - 53.56382
+      - 14.82843
+      date: 2019-04-13 09:27:45.844574
+    - addr: plac Kopernika 814
+      city: "Tomasz\xF3w"
+      code: 20-426
+      cord: !!python/tuple
+      - 51.5445548
+      - 20.0214595
+      date: 2019-04-13 09:27:46.350783
+    - addr: pl. Staffa 67
+      city: Zabrze
+      code: 53-344
+      cord: !!python/tuple
+      - 56.4355675
+      - -6.341755999999999
+      date: 2019-04-13 09:27:46.764823
+    - addr: "ulica G\u0142ogowa 65/57"
+      city: Malbork
+      code: 19-582
+      cord: !!python/tuple
+      - 54.04150050000001
+      - 19.0196343
+      date: 2019-04-13 09:27:47.172573
+    user_id: 0
+  2:
+    curr_route: 1
+    curr_state: true
+    date_sent: 2019-04-13 09:27:48.816814
+    product: *id001
+    route:
+    - addr: ulica Irysowa 60/89
       city: Zgierz
-      code: 21-341
+      code: 18-454
       cord: !!python/tuple
       - 51.85505759999999
       - 19.4060704
-      date: 2019-04-13 09:15:10.846833
-    - addr: al. Sienkiewicza 39
-      city: "Miko\u0142\xF3w"
-      code: 04-729
+      date: 2019-04-13 09:27:47.579231
+    - addr: "al. Przemys\u0142owa 09/32"
+      city: Rybnik
+      code: 73-519
       cord: !!python/tuple
-      - 50.1923067
-      - 18.9209162
-      date: 2019-04-13 09:15:11.262413
-    user_id: 0
-  3:
-    curr_route: 1
-    curr_state: true
-    date_sent: 2019-04-13 09:15:13.206784
-    product:
-      id: 4
-      img: https://c.allegroimg.com/original/03594d/d73ca2324857b68cd12ca9afa1cc/IPHONE-XS-MAX-256-GB-NOWY
-      name: "Smartfon Apple iPhone XS Max z\u0142oty 256 GB"
-      url: https://allegro.pl/oferta/iphone-xs-max-256-gb-nowy-7976779097?reco_id=94bfa021-5db9-11e9-9530-6c3be5c06da0&sid=214dee23af5dacba6db9ec985d2421ccbc3b0218e9654c1f9eeca650c7d606e7
-    route:
-    - addr: plac Korfantego 307
-      city: Brzeg
-      code: 90-647
+      - 50.1003749
+      - 18.5688513
+      date: 2019-04-13 09:27:47.934620
+    - addr: plac Handlowa 47/45
+      city: Jaworzno
+      code: 58-156
       cord: !!python/tuple
-      - 50.8465043
-      - 17.4661749
-      date: 2019-04-13 09:15:11.666012
-    - addr: aleja Brzozowa 48
-      city: Wejherowo
-      code: 13-158
+      - 50.204987
+      - 19.2739314
+      date: 2019-04-13 09:27:48.335673
+    - addr: pl. Zacisze 347
+      city: Marki
+      code: 44-065
       cord: !!python/tuple
-      - 54.6003216
-      - 18.2330488
-      date: 2019-04-13 09:15:12.075601
-    - addr: "plac Je\u017Cynowa 55"
-      city: Ruda
-      code: 51-584
-      cord: !!python/tuple
-      - 50.2578542
-      - 18.8799638
-      date: 2019-04-13 09:15:12.587569
-    - addr: aleja Asnyka 031
-      city: Sieradz
-      code: 38-534
-      cord: !!python/tuple
-      - 51.5826742
-      - 18.7240619
-      date: 2019-04-13 09:15:13.206734
-    user_id: 0
-  4:
-    curr_route: 1
-    curr_state: true
-    date_sent: 2019-04-13 09:15:14.124454
-    product: *id002
-    route:
-    - addr: pl. Pocztowa 00/57
-      city: "K\u0142odzko"
-      code: 44-269
-      cord: !!python/tuple
-      - 50.4345636
-      - 16.6613941
-      date: 2019-04-13 09:15:13.612541
-    - addr: "al. \u017Burawia 66"
-      city: Malbork
-      code: 80-276
-      cord: !!python/tuple
-      - 52.2277008
-      - 21.010917
-      date: 2019-04-13 09:15:14.124393
+      - 52.2861984
+      - 21.0785932
+      date: 2019-04-13 09:27:48.816758
     user_id: 0
 users:
   0:
-    name: pan Robert Dawidek
-    pack: 0
+    name: Malwina Wojtanowicz
+    pack:
+    - 0
+    - 1
+    - 2
