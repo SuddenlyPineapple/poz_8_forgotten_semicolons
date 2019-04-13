@@ -26,6 +26,7 @@ def log(*args):
     print(file=stderr, *args)
 
 
+import datetime
 def load_db(path):
     with open(path, 'r') as file:
         try:
@@ -38,6 +39,7 @@ def load_db(path):
                 res['packs'][id]['elapsed'] = 0
                 res['packs'][id]['points'] = points
                 res['packs'][id]['seconds'] = seconds
+                res['packs'][id]['date_deli'] = res['packs'][id]['date_sent'] + datetime.timedelta(0, seconds)
                 res['packs'][id]['lines'] = polyline
                 res['packs'][id]['finished'] = False
             return res
@@ -64,11 +66,11 @@ def get_pack_info(id):
         'pack_id': id,
         'user_id': pack['user_id'],
         'date_sent': pack['date_sent'],
-        'date_deli': pack['date_sent'],  # todo: real predicted delivery date
+        'date_deli': pack['date_deli'],
         'route': pack['route'],
         'lines': pack['lines'],
         'product': {
-            'name': 'product.name',  # todo: real product name
+            'name': pack['product']['name'],
         },
     }
     return res
