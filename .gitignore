@@ -35,3 +35,4 @@ Pipfile.lock
 
 magic/.idea
 .idea
+__pycache__
