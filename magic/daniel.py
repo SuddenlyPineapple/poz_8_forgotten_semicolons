@@ -1,8 +1,6 @@
 import googlemaps
-from pprint import pprint
 import polyline
 import sys
-import numpy as np
 
 EPSILON = sys.float_info.epsilon
 gmaps = googlemaps.Client(key='AIzaSyCkF7rIDbq8WFxWv8i09_dpeTkf1ueXwRA')
