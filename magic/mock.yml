@@ -1,17 +1,17 @@
 users:
-    u000001:
+    u0:
         name: Max Adamski
-        pack: [p000001]
-    u000002:
+        pack: [p0]
+    u1:
         name: Daniel Cieśliński
         pack: []
-    u000003:
+    u2:
         name: Jakob Wolitzki
         pack: []
 
 packs:
-    p000001:
-        user_id: u000001
+    p0:
+        user_id: u0
         product:
             name: 'Frugo Zielony Mix'
         route:
