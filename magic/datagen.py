@@ -51,9 +51,6 @@ class Generate:
             },
         ]
 
-    def gen_product(self):
-        return random.choice(self.product)
-
     def gen_route(self):
         route = []
         i = 0
@@ -84,7 +81,7 @@ class Generate:
         for i in range(number):
             self.packs[f'p{self.pack_id}'] = {
                 'user_id': user_id,
-                'product': self.gen_product(),
+                'product': self.product[i],
                 'route': self.gen_route(),
                 'date_sent': datetime.now(),
                 'curr_state': True,

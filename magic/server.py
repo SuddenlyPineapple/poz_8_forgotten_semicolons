@@ -99,7 +99,7 @@ def paczka_stan():
     pack = db['packs'][id]
     finished = pack['finished']
     state = 'Dostarczona' if finished else 'W transporcie'
-    coord = pack['points'][pack['elapsed']]
+    coord = [0, 0] if finished else pack['points'][pack['elapsed']]
     res = {
         'pack_id': id,
         'curr_coord': coord,
