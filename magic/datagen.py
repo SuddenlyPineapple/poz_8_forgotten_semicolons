@@ -12,17 +12,22 @@ class Generate:
         self.pack_id = 0
         self.x = 52.010440
         self.y = 21.129723
-        self.gmaps = googlemaps.Client(
-            key='AIzaSyCkF7rIDbq8WFxWv8i09_dpeTkf1ueXwRA')
+        self.key='AIzaSyCkF7rIDbq8WFxWv8i09_dpeTkf1ueXwRA'
 
 
     def gen_product_name(self):
         return 'product name'
 
+    def get_point(self):
+        pass
+
     def gen_route(self):
-        data = fake.address().split('\n')
-        addres = data[0]
-        f'https://maps.googleapis.com/maps/api/geocode/json?address={address}&key={self.gmaps}'
+        address = fake.address().replace('\n', ' ')
+        link = f'https://maps.googleapis.com/maps/api/geocode/json?address={address}&key={self.keys}'
+        x = requests.get(link)
+        data = x.json()
+        return data['results'][0]['geometry']['location']
+
 
     def gen_packs(self, user_id):
         number = random.randint(1, 6)
@@ -71,5 +76,5 @@ link = f'https://maps.googleapis.com/maps/api/geocode/json?address={address}&key
 
 x = requests.get(link)
 data = x.json()
-pprint(data['results'][0]['geometry'])
+pprint(data['results'][0]['geometry']['location'])
 
