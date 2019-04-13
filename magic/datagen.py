@@ -20,31 +20,31 @@ class Generate:
         self.users = {}
         self.packs = {}
         self.product = [{
-            'id':0,
+            'id':'i0',
             'name': 'LEGO CITY 60206 Policyjny patrol',
             'url': 'https://allegro.pl/oferta/lego-city-60206-policyjny-patrol-7764308125',
             'img': 'https://3.allegroimg.com/original/014e4e/22bdd5c545d795a31cb134438823/LEGO-CITY-60206-Policyjny-patrol',
             },
             {
-            'id':1,
+            'id':'i1',
             'name': 'Zestaw z maszynką do golenia Gillette Mach3',
             'url': 'https://allegro.pl/oferta/zestaw-z-maszynka-do-golenia-gillette-mach3-zel-7968767514?bi_s=strk_specjalna_sg_pion&bi_c=Licytacje&',
             'img': 'https://6.allegroimg.com/original/0080d6/8c255ba24701b88b1c051fc8eb26/Zestaw-Gillette-X-mass-81675185/Zestaw-z-maszynka-do-golenia-Gillette-Mach3-zel',
             },
             {
-            'id':2,
+            'id':'i2',
             'name': 'MacBook Pro 15 Core i7',
             'url': 'https://allegro.pl/oferta/macbook-pro-15-core-i7-2-5ghz-16-512-gt750-2014-7795075067?reco_id=541adc33-5db9-11e9-8dea-246e96320fe8&sid=214dee23af5dacba6db9ec985d2421ccbc3b0218e9654c1f9eeca650c7d606e7',
             'img': 'https://d.allegroimg.com/original/03b22e/7e0fdf8d4abaafb957abd050e1cd/MacBook-Pro-15-Core-i7-2-5GHz-16-512-GT750-2014',
             },
             {
-            'id':3,
+            'id':'i3',
             'name': 'Statyw POLAROID 183cm',
             'url': 'https://allegro.pl/oferta/statyw-polaroid-183cm-t72-canon-nikon-sony-gratis-7845334847?reco_id=7ed34abb-5db9-11e9-89b2-000af7f61ef0&sid=214dee23af5dacba6db9ec985d2421ccbc3b0218e9654c1f9eeca650c7d606e7',
             'img': 'https://1.allegroimg.com/original/069079/c98a79374c9aa86c46666a2ba6a1/Statyw-POLAROID-183cm-T72-Canon-Nikon-Sony-GRATIS',
             },
             {
-            'id':4,
+            'id':'i4',
             'name': 'Smartfon Apple iPhone XS Max złoty 256 GB',
             'url': 'https://allegro.pl/oferta/iphone-xs-max-256-gb-nowy-7976779097?reco_id=94bfa021-5db9-11e9-9530-6c3be5c06da0&sid=214dee23af5dacba6db9ec985d2421ccbc3b0218e9654c1f9eeca650c7d606e7',
             'img': 'https://c.allegroimg.com/original/03594d/d73ca2324857b68cd12ca9afa1cc/IPHONE-XS-MAX-256-GB-NOWY',
@@ -83,7 +83,7 @@ class Generate:
 
     def gen_packs(self, user_id, number):
         for i in range(number):
-            self.packs[self.pack_id] = {
+            self.packs[f'p{self.pack_id}'] = {
                 'user_id': user_id,
                 'product': self.gen_product_name(),
                 'route': self.gen_route(),
@@ -96,7 +96,7 @@ class Generate:
     def gen_users(self, number):
         for i in range(number):
             number_of_packs = random.randint(1, 6)
-            self.users[i] = {
+            self.users[f'u{i}'] = {
                 'name': fake.name(),
                 'pack': [self.pack_id + i for i in range(number_of_packs)]
             }
