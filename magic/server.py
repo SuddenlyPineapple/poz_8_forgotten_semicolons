@@ -1,29 +1,55 @@
+#!/usr/bin/env python3
+
 import yaml
 from sys import stderr, argv
 from pprint import pprint
+from daniel import new_route
 from flask import Flask, jsonify, request, abort, make_response
+import time, threading
+from flask_cors import CORS
 
 app = Flask(__name__)
-DB = 'mock.yml'
+CORS(app)
 db = {}
 
+def update_times():
+    for id in db['packs']:
+        if db['packs'][id]['finished'] == False:
+            db['packs'][id]['elapsed'] += 1
+            db['packs'][id]['finished'] = db['packs'][id]['elapsed'] >= db['packs'][id]['seconds']
+
+def timer():
+    threading.Timer(1, timer).start()
+    update_times()
 
 def log(*args):
     print(file=stderr, *args)
 
 
-def load_db():
-    global db
-    with open(DB, 'r') as file:
+import datetime
+def load_db(path):
+    with open(path, 'r') as file:
         try:
-            db = yaml.load(file)
-        except yaml.YAMLError as e:
+            res = yaml.safe_load(file)
+            for id in res['packs']:
+                pack = res['packs'][id]
+                route = [massage_poi(x) for x in pack['route']]
+                res['packs'][id]['route'] = route
+                (points, seconds), polyline = new_route([(x['x'], x['y']) for x in route])
+                res['packs'][id]['elapsed'] = 0
+                res['packs'][id]['points'] = points
+                res['packs'][id]['seconds'] = seconds
+                res['packs'][id]['date_deli'] = res['packs'][id]['date_sent'] + datetime.timedelta(0, seconds)
+                res['packs'][id]['lines'] = polyline
+                res['packs'][id]['finished'] = False
+            return res
+        except Exception as e:
             print('database exception', e)
+            exit(1)
 
 
-def save_db():
-    global db
-    with open(DB, 'w') as file:
+def save_db(db, path):
+    with open(path, 'w') as file:
         yaml.dump(db, file)
 
 
@@ -32,17 +58,34 @@ def massage_poi(dict):
     return {'x': x, 'y': y, 'name': dict['addr'], 'date': dict['date']}
 
 
-@app.route('/paczki', methods=['GET'])
-def paczki():
-    id = request.args.get('user')
-    if id not in db['users']:
-        return make_response(jsonify({"error": f"user {id} not in database"}), 400)
-    user = db['users'][id]
+def get_pack_info(id):
+    if id not in db['packs']:
+        return make_response(jsonify({'error': f'package {id} not in database'}), 400)
+    pack = db['packs'][id]
     res = {
-        'user_id': id,
-        'paczki': user['pack'],
+        'pack_id': id,
+        'user_id': pack['user_id'],
+        'date_sent': pack['date_sent'],
+        'date_deli': pack['date_deli'],
+        'route': pack['route'],
+        'lines': pack['lines'],
+        'product': {
+            'name': pack['product']['name'],
+        },
     }
-    return jsonify(res)
+    return res
+
+
+@app.route('/', methods=['GET'])
+def index():
+    index = """
+    allepaczka serwer
+
+    /paczka_info?id=p0
+    /paczka_stan?id=p0
+    /paczki?user=u0
+    """
+    return make_response('<br>'.join(index.split('\n')), 200)
 
 
 @app.route('/paczka_stan', methods=['GET'])
@@ -62,22 +105,20 @@ def paczka_stan():
 @app.route('/paczka_info', methods=['GET'])
 def paczka_info():
     id = request.args.get('id')
-    if id not in db['packs']:
-        return make_response(jsonify({'error': f'package {id} not in database'}), 400)
-    pack = db['packs'][id]
-    user_id = pack['user_id']
-    date_sent = pack['date_sent']
-    route = [massage_poi(poi) for poi in pack['route']]
+    return jsonify(get_pack_info(id))
+
+
+@app.route('/paczki', methods=['GET'])
+def paczki():
+    id = request.args.get('user')
+    if id not in db['users']:
+        return make_response(jsonify({"error": f"user {id} not in database"}), 400)
+    user = db['users'][id]
+    packs = user['pack']
     res = {
-        'pack_id': id,
-        'user_id': user_id,
-        'date_sent': date_sent,
-        'date_deli': date_sent,  # todo: real predicted delivery date
-        'route': route,
-        'lines': [],  # todo: lines to draw on map
-        'product': {
-            'name': 'product.name',  # todo: real product name
-        },
+        'user_id': id,
+        'paczki_id': packs,
+        'paczki': list(map(get_pack_info, packs)),
     }
     return jsonify(res)
 
@@ -94,15 +135,19 @@ def bad_request(error):
 
 if __name__ == '__main__':
     program = argv[0]
-    if len(argv) < 3:
-        log(f'usage: {program} 0.0.0.0 6060')
+    if len(argv) < 4:
+        log(f'usage: {program} magic/mock.yml 0.0.0.0 6060')
         exit(1)
 
-    _, host, port = argv
+    _, db_path, host, port = argv
     try:
-        load_db()
+        db = load_db(db_path)
+        timer()
+        print('passed')
         app.jinja_env.auto_reload = True
         app.config['TEMPLATES_AUTO_RELOAD'] = True
         app.run(debug=True, host=host, port=int(port))
-    except:
-        save_db()
+    except Exception as e:
+        print(e)
+        # save_db(db, db_path)
+        exit(1)
