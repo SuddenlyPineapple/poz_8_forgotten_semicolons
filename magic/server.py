@@ -29,17 +29,25 @@ def massage_poi(dict):
     return {'x': x, 'y': y, 'name': dict['addr'], 'date': dict['date']}
 
 
-@app.route('/paczki', methods=['GET'])
-def paczki():
-    id = request.args.get('user')
-    if id not in db['users']:
-        return make_response(jsonify({"error": f"user {id} not in database"}), 400)
-    user = db['users'][id]
+def get_pack_info(id):
+    if id not in db['packs']:
+        return make_response(jsonify({'error': f'package {id} not in database'}), 400)
+    pack = db['packs'][id]
+    user_id = pack['user_id']
+    date_sent = pack['date_sent']
+    route = [massage_poi(poi) for poi in pack['route']]
     res = {
-        'user_id': id,
-        'paczki': user['pack'],
+        'pack_id': id,
+        'user_id': user_id,
+        'date_sent': date_sent,
+        'date_deli': date_sent,  # todo: real predicted delivery date
+        'route': route,
+        'lines': [],  # todo: lines to draw on map
+        'product': {
+            'name': 'product.name',  # todo: real product name
+        },
     }
-    return jsonify(res)
+    return res
 
 
 @app.route('/', methods=['GET'])
@@ -47,9 +55,9 @@ def index():
     index = """
     allepaczka serwer
 
-    /paczka_info?id=_
-    /paczka_stan?id=_
-    /paczki?user=_
+    /paczka_info?id=p0
+    /paczka_stan?id=p0
+    /paczki?user=u0
     """
     return make_response('<br>'.join(index.split('\n')), 200)
 
@@ -71,24 +79,22 @@ def paczka_stan():
 @app.route('/paczka_info', methods=['GET'])
 def paczka_info():
     id = request.args.get('id')
-    if id not in db['packs']:
-        return make_response(jsonify({'error': f'package {id} not in database'}), 400)
-    pack = db['packs'][id]
-    user_id = pack['user_id']
-    date_sent = pack['date_sent']
-    route = [massage_poi(poi) for poi in pack['route']]
+    return jsonify(get_pack_info(id))
+
+@app.route('/paczki', methods=['GET'])
+def paczki():
+    id = request.args.get('user')
+    if id not in db['users']:
+        return make_response(jsonify({"error": f"user {id} not in database"}), 400)
+    user = db['users'][id]
+    packs = user['pack']
     res = {
-        'pack_id': id,
-        'user_id': user_id,
-        'date_sent': date_sent,
-        'date_deli': date_sent,  # todo: real predicted delivery date
-        'route': route,
-        'lines': [],  # todo: lines to draw on map
-        'product': {
-            'name': 'product.name',  # todo: real product name
-        },
+        'user_id': id,
+        'paczki_id': packs,
+        'paczki': list(map(get_pack_info, packs)),
     }
     return jsonify(res)
+
 
 
 @app.errorhandler(400)
