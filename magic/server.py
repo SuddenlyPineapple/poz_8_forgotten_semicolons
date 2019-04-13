@@ -1,12 +1,26 @@
+#!/usr/bin/env python3
+
 import yaml
 from sys import stderr, argv
 from pprint import pprint
 from daniel import new_route
 from flask import Flask, jsonify, request, abort, make_response
+import time, threading
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 db = {}
 
+def update_times():
+    for id in db['packs']:
+        if db['packs'][id]['finished'] == False:
+            db['packs'][id]['elapsed'] += 1
+            db['packs'][id]['finished'] = db['packs'][id]['elapsed'] >= db['packs'][id]['seconds']
+
+def timer():
+    threading.Timer(1, timer).start()
+    update_times()
 
 def log(*args):
     print(file=stderr, *args)
@@ -24,8 +38,10 @@ def load_db(path):
                 res['packs'][id]['elapsed'] = 0
                 res['packs'][id]['points'] = points
                 res['packs'][id]['seconds'] = seconds
+                res['packs'][id]['lines'] = polyline
+                res['packs'][id]['finished'] = False
             return res
-        except _ as e:
+        except Exception as e:
             print('database exception', e)
             exit(1)
 
@@ -124,10 +140,12 @@ if __name__ == '__main__':
     _, db_path, host, port = argv
     try:
         db = load_db(db_path)
+        timer()
+        print('passed')
         app.jinja_env.auto_reload = True
         app.config['TEMPLATES_AUTO_RELOAD'] = True
         app.run(debug=True, host=host, port=int(port))
-    except _ as e:
+    except Exception as e:
         print(e)
         # save_db(db, db_path)
         exit(1)
