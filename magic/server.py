@@ -58,7 +58,7 @@ def save_db(db, path):
 
 def massage_poi(dict):
     x, y = dict['cord']
-    return {'x': x, 'y': y, 'name': dict['addr'], 'date': dict['date']}
+    return {'x': x, 'y': y, 'name': dict['city'] + ', ' + dict['addr'], 'date': dict['date']}
 
 
 def get_pack_info(id):
