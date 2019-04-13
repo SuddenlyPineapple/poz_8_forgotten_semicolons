@@ -7,10 +7,12 @@ from daniel import new_route
 from flask import Flask, jsonify, request, abort, make_response
 import time, threading
 from flask_cors import CORS
+import datetime
 
 app = Flask(__name__)
 CORS(app)
 db = {}
+
 
 def update_times():
     for id in db['packs']:
@@ -18,15 +20,16 @@ def update_times():
             db['packs'][id]['elapsed'] += 1
             db['packs'][id]['finished'] = db['packs'][id]['elapsed'] >= db['packs'][id]['seconds']
 
+
 def timer():
     threading.Timer(1, timer).start()
     update_times()
+
 
 def log(*args):
     print(file=stderr, *args)
 
 
-import datetime
 def load_db(path):
     with open(path, 'r') as file:
         try:
@@ -93,11 +96,15 @@ def paczka_stan():
     id = request.args.get('id')
     if id not in db['packs']:
         return make_response(jsonify({'error': f'package {id} not in database'}), 400)
+    pack = db['packs'][id]
+    finished = pack['finished']
+    state = 'Dostarczona' if finished else 'W transporcie'
+    coord = pack['points'][pack['elapsed']]
     res = {
         'pack_id': id,
-        'curr_coord': [0, 0],
+        'curr_coord': coord,
         'curr_route': 0,
-        'curr_state': 'curr_state',
+        'curr_state': state,
     }
     return jsonify(res)
 
