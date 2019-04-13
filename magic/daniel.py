@@ -1,6 +1,7 @@
 import googlemaps
 import polyline
 import sys
+from pprint import pprint
 
 EPSILON = sys.float_info.epsilon
 gmaps = googlemaps.Client(key='AIzaSyCkF7rIDbq8WFxWv8i09_dpeTkf1ueXwRA')
@@ -33,24 +34,29 @@ def gen_whole_arr(steps):
     y_intered = resize(list(maped[1]), seconds)
 
     parsed = list(zip(x_intered, y_intered))
-    return parsed
-
+    return parsed, seconds
 
 
 def new_route(points):
     """
     :param points: List of tuples [(x1,y1), (x2,y2), (x3,y3)] First is starting point, last destination
-    :return: List of points, Nth index for Nth request
+    :return: List of points, Nth index for Nth request. Number of seconds and route_polyline
+
+    ----
+        ((list_of_points, seconds), route_polyline)
+    ----
+
     """
     start, end = points.pop(0), points.pop()
     response = gmaps.directions(start, end, waypoints=points,mode='driving', alternatives='false')
-    return  gen_whole_arr(response[0]['legs'][0]['steps'])
+    return  gen_whole_arr(response[0]['legs'][0]['steps']), polyline.decode(response[0]['overview_polyline']['points'])
+
+if __name__ == '__main__':
+    pprint(new_route([ (51.2132, 19.2323), (52.2823, 19.9898)]))
 
 
 """
 'overview polyline'
 """
-
-
 
 
