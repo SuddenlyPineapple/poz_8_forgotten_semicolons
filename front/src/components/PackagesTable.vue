@@ -10,10 +10,11 @@
         <td class="text-xs-right">{{ props.item.date_sent }}</td>
         <td class="text-xs-right">{{ props.item.date_deli }}</td>
         <td class="text-xs-right">{{ props.item.product.name }}</td>
-        <td class="text-xs-right" :date="props.item.date_deli">{{ now }}</td>
+        <!-- <td class="text-xs-right" :date="props.item.date_deli">{{ now }}</td> -->
         <td class="text-xs-center"><v-btn color="warning" :to="'/paczka/'+props.item.pack_id">Szczegóły</v-btn></td>
         </template>
     </v-data-table>
+    <div id="map"></div>
   </div>
 </template>
 
@@ -30,7 +31,7 @@ export default Vue.extend({
           { text: 'Data Nadania', align: 'right', value: 'date_sent' },
           { text: 'Data Odbioru', align: 'right', value: 'date_deli' },
           { text: 'Przedmiot', align: 'right', value: 'product.name' },
-          { text: 'Licznik', align: 'right', value: 'now' },
+        //   { text: 'Licznik', align: 'right', value: 'now' },
           { text: 'Szczegóły', align: 'right', sortable: false }
         ],
         packages: {},
