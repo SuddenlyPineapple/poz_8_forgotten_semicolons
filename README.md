@@ -47,7 +47,9 @@ Kurier ma spisane paczki, na dany dzień.
 ## Screenshots
 
 ![Main Screen](https://imagizer.imageshack.com/img921/3783/GVvO9j.jpg)
+
 ![Package Screen](https://imagizer.imageshack.com/img923/97/GTj00v.jpg)
+
 ![Mobile Menu](https://imagizer.imageshack.com/img924/8789/yrlaPH.jpg)
 
 ## Authors
