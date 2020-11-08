@@ -41,7 +41,7 @@ export default Vue.extend({
     methods: {
         sendQuery() {
             axios
-                .get('http://3.17.203.94:6060/paczki?user=u0')
+                .get('http://localhost:6060/paczki?user=u0')
                 .then( (response) => (this.packages = response.data));
         }
     },
